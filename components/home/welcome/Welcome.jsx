@@ -12,6 +12,7 @@ import { icons, SIZES } from '../../../constants';
 import { useRouter } from 'expo-router';
 
 const jobTypes = ["Full-time", "Part-time", "Container"];
+
 const Welcome = () => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState("Full-time");
