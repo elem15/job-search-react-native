@@ -6,6 +6,7 @@ import { isLoading } from 'expo-font';
 import { COLORS, SIZES } from '../../../constants';
 import PopularJobCard from '../../common/cards/popular/PopularJobCard';
 import useFetch from '../../../hook/useFetch';
+import { useState } from 'react';
 
 const Popularjobs = () => {
   const router = useRouter();
@@ -13,6 +14,10 @@ const Popularjobs = () => {
     query: 'React developer',
     num_pages: 1,
   });
+  const [selectedJob, setSelectedJob] = useState();
+  const handleCardPress = () => {
+
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
