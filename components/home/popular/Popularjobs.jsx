@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react
 
 import styles from './popularjobs.style';
 import { useRouter } from 'expo-router';
-import { isLoading } from 'expo-font';
 import { COLORS, SIZES } from '../../../constants';
 import PopularJobCard from '../../common/cards/popular/PopularJobCard';
 import useFetch from '../../../hook/useFetch';
@@ -15,8 +14,9 @@ const Popularjobs = () => {
     num_pages: 1,
   });
   const [selectedJob, setSelectedJob] = useState();
-  const handleCardPress = () => {
-
+  const handleCardPress = (item) => {
+    router.push(`/job-details/${item.job_id}`);
+    setSelectedJob(item.job_id);
   };
   return (
     <View style={styles.container}>
@@ -38,6 +38,8 @@ const Popularjobs = () => {
             renderItem={({ item }) => (
               <PopularJobCard
                 item={item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
               />
             )}
             horizontal
