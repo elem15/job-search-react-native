@@ -8,7 +8,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 const Home = () => {
   const router = useRouter();
 
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen

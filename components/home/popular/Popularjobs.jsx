@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react
 
 import styles from './popularjobs.style';
 import { useRouter } from 'expo-router';
-import { isLoading } from 'expo-font';
 import { COLORS, SIZES } from '../../../constants';
 import PopularJobCard from '../../common/cards/popular/PopularJobCard';
 import useFetch from '../../../hook/useFetch';

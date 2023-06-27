@@ -9,9 +9,7 @@ import { useState } from 'react';
 const JobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
-
   const { data, isLoading, error, refetch } = useFetch('job-details', { job_id: params.id });
-
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => { };
@@ -46,15 +44,18 @@ const JobDetails = () => {
         <ScrollView
           showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
-          {isLoading ? (
+          {isLoading || !data[0] ? (
             <ActivityIndicator size="large" colors={COLORS.primary} />
           ) : error ? (
             <Text>Something went wrong</Text>
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }} >
               <Company
+                companyLogo={data[0].employer_logo}
+                jobTitle={data[0].job_title}
+                companyName={data[0].employer_name}
+                location={data[0].job_country}
               />
-
               <JobTabs
 
               />
