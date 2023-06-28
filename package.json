@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "expo": "expo start --dev-client",
+    "expo": "expo start",
     "json": "json-server --watch data/db.json",
     "start": "concurrently \"npm run json\" \"npm run expo\"",
     "android": "expo run:android",

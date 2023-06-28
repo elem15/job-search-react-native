@@ -1,6 +1,7 @@
 import { Stack, useRouter, useSearchParams } from 'expo-router';
 import { ActivityIndicator, RefreshControl, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import useFetch from '../../hook/useFetch';
+import useMyFetch from '../../hook/useMyFetch';
 import useJsonOneJob from '../../hook/useJsonOneJob';
 import { COLORS, SIZES, icons } from '../../constants';
 import { Company, JobTabs, ScreenHeaderBtn } from '../../components';
@@ -10,7 +11,7 @@ import { useState } from 'react';
 const JobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
-  const { data, isLoading, error, refetch } = useJsonOneJob('job-details', { job_id: params.id });
+  const { data, isLoading, error, refetch } = useMyFetch('job-details', { job_id: params.id });
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => { };
