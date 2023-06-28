@@ -5,11 +5,12 @@ import { useRouter } from 'expo-router';
 import { COLORS, SIZES } from '../../../constants';
 import PopularJobCard from '../../common/cards/popular/PopularJobCard';
 import useFetch from '../../../hook/useFetch';
+import useJson from '../../../hook/useJsonJobs';
 import { useState } from 'react';
 
 const Popularjobs = () => {
   const router = useRouter();
-  const { data, isLoading, error, refetch } = useFetch('search', {
+  const { data, isLoading, error, refetch } = useJson('search', {
     query: 'React developer',
     num_pages: 1,
   });

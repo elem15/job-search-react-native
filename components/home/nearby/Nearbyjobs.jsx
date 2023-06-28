@@ -6,10 +6,11 @@ import styles from "./nearbyjobs.style";
 import { COLORS } from "../../../constants";
 import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
 import useFetch from "../../../hook/useFetch";
+import useJson from "../../../hook/useJsonJobs";
 
 const Nearbyjobs = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch("search", {
+  const { data, isLoading, error } = useJson("search", {
     query: "React Native developer",
     num_pages: "1",
   });
