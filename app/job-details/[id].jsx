@@ -4,10 +4,10 @@ import useFetch from '../../hook/useFetch';
 import useMyFetch from '../../hook/useMyFetch';
 import useJsonOneJob from '../../hook/useJsonOneJob';
 import { COLORS, SIZES, icons } from '../../constants';
-import { Company, JobTabs, ScreenHeaderBtn } from '../../components';
+import { Company, JobFooter, JobTabs, ScreenHeaderBtn, Specifics } from '../../components';
 import { useState } from 'react';
 
-const tabs = ["About", "Qualifications", "Responsibilites"];
+const tabs = ["About", "Qualifications", "Responsibilities"];
 
 const JobDetails = () => {
   const params = useSearchParams();
@@ -18,6 +18,14 @@ const JobDetails = () => {
 
   const onRefresh = () => { };
 
+  const displayTabContent = () => {
+    return (
+      <Specifics
+        title={activeTab}
+        points={data[0].job_highlights?.[activeTab] ?? ['N/A']}
+      />
+    );
+  };
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: COLORS.lightWhite }}
@@ -64,11 +72,14 @@ const JobDetails = () => {
                 tabs={tabs}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
-
               />
+              {displayTabContent()}
             </View>
           )}
         </ScrollView>
+        <JobFooter
+          url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results'}
+        />
       </>
     </SafeAreaView>
   );
