@@ -7,12 +7,14 @@ import { COLORS, SIZES, icons } from '../../constants';
 import { Company, JobTabs, ScreenHeaderBtn } from '../../components';
 import { useState } from 'react';
 
+const tabs = ["About", "Qualifications", "Responsibilites"];
 
 const JobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
   const { data, isLoading, error, refetch } = useMyFetch('job-details', { job_id: params.id });
   const [refreshing, setRefreshing] = useState(false);
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const onRefresh = () => { };
 
@@ -59,6 +61,9 @@ const JobDetails = () => {
                 location={data[0].job_country}
               />
               <JobTabs
+                tabs={tabs}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
 
               />
             </View>
