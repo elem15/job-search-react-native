@@ -5,9 +5,9 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import styles from "./nearbyjobs.style";
 import { COLORS } from "../../../constants";
 import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
-import useFetch from "../../../hook/useFetch";
-import useMyFetch from "../../../hook/useMyFetch";
-import useJsonJobs from "../../../hook/useJsonJobs";
+import useFetch from "../../../hooks/useFetch";
+import useMyFetch from "../../../hooks/useMyFetch";
+import useJsonJobs from "../../../hooks/useJsonJobs";
 
 const Nearbyjobs = () => {
   const router = useRouter();

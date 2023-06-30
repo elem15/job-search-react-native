@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "../../../styles/search";
 import { COLORS, SIZES, icons } from "../../../constants";
 import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
-import useFetch from "../../../hook/useFetch";
-import useMyFetch from "../../../hook/useMyFetch";
-import useJsonJobs from "../../../hook/useJsonJobs";
+import useMyFetch from "../../../hooks/useMyFetch";
 import { SafeAreaView } from 'react-native';
 import { FlatList } from 'react-native';
 import { Image } from 'react-native';
-import axios from 'axios';
+import { RefreshControl } from 'react-native';
 
 const JobSearch = ({ searchTerm }) => {
   const router = useRouter();
@@ -27,9 +25,17 @@ const JobSearch = ({ searchTerm }) => {
     }
   };
 
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  }, []);
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }} >
       <FlatList
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         data={data}
         renderItem={({ item }) => (
           <NearbyJobCard

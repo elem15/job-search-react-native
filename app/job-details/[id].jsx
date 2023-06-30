@@ -1,11 +1,11 @@
 import { Stack, useRouter, useSearchParams } from 'expo-router';
 import { ActivityIndicator, RefreshControl, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import useFetch from '../../hook/useFetch';
-import useMyFetch from '../../hook/useMyFetch';
-import useJsonOneJob from '../../hook/useJsonOneJob';
+import useFetch from '../../hooks/useFetch';
+import useMyFetch from '../../hooks/useMyFetch';
+import useJsonOneJob from '../../hooks/useJsonOneJob';
 import { COLORS, SIZES, icons } from '../../constants';
 import { Company, JobFooter, JobTabs, ScreenHeaderBtn, Specifics } from '../../components';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
@@ -16,11 +16,11 @@ const JobDetails = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[1]);
 
-  useEffect(() => {
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
     refetch();
+    setRefreshing(false);
   }, []);
-
-  const onRefresh = () => { };
 
   return (
     <SafeAreaView

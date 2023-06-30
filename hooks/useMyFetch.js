@@ -1,17 +1,19 @@
 import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RAPID_API_KEY } from '../.env';
 
 const rapidApiKey = RAPID_API_KEY;
+const url = 'https://job-search-cc3e.onrender.com';
+// const url = 'http://localhost:3000';
 
-const useJsonJobs = (endpoint, query) => {
+const useMyFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const correctQuery = useMemo(() => ((query.query).replaceAll(" ", "_")), [query.query]);
+
   const options = {
     method: 'GET',
-    url: `http://localhost:3000/${correctQuery}`,
+    url: `${url}/${endpoint}`,
     params: {
       ...query
     },
@@ -24,7 +26,8 @@ const useJsonJobs = (endpoint, query) => {
     setIsLoading(true);
     try {
       const response = await axios.request(options);
-      setData(response.data);
+      if (Array.isArray(response.data)) setData(response.data);
+      else setData([response.data]);
       setIsLoading(false);
     } catch (error) {
       setError(error);
@@ -35,14 +38,15 @@ const useJsonJobs = (endpoint, query) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (query.query || query.page || query.job_id) {
+      fetchData();
+    }
+  }, [query.query, query.page, query.job_id]);
 
   const refetch = () => {
-    setIsLoading(true);
     fetchData();
   };
   return { data, isLoading, error, refetch };
 };
 
-export default useJsonJobs;
+export default useMyFetch;

@@ -4,9 +4,9 @@ import styles from './popularjobs.style';
 import { useRouter } from 'expo-router';
 import { COLORS, SIZES } from '../../../constants';
 import PopularJobCard from '../../common/cards/popular/PopularJobCard';
-import useFetch from '../../../hook/useFetch';
-import useMyFetch from "../../../hook/useMyFetch";
-import useJsonJobs from '../../../hook/useJsonJobs';
+import useFetch from '../../../hooks/useFetch';
+import useMyFetch from "../../../hooks/useMyFetch";
+import useJsonJobs from '../../../hooks/useJsonJobs';
 import { useState } from 'react';
 
 const Popularjobs = () => {

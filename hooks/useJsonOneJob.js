@@ -1,8 +1,5 @@
 import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
-import { RAPID_API_KEY } from '../.env';
-
-const rapidApiKey = RAPID_API_KEY;
 
 const useJsonOneJob = (endpoint, query) => {
   const [data, setData] = useState([]);
