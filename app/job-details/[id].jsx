@@ -22,14 +22,6 @@ const JobDetails = () => {
 
   const onRefresh = () => { };
 
-  const displayTabContent = () => {
-    return (
-      <Specifics
-        title={activeTab}
-        points={data[0].job_highlights?.[activeTab] ?? ['N/A']}
-      />
-    );
-  };
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: COLORS.lightWhite }}
@@ -77,7 +69,10 @@ const JobDetails = () => {
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
               />
-              {displayTabContent()}
+              <Specifics
+                title={activeTab}
+                points={data[0].job_highlights?.[activeTab] ?? ['N/A']}
+              />
             </View>
           )}
         </ScrollView>

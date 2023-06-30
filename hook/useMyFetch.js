@@ -38,10 +38,10 @@ const useMyFetch = (endpoint, query) => {
   };
 
   useEffect(() => {
-    if (query.query) {
+    if (query.query || query.page) {
       fetchData();
     }
-  }, []);
+  }, [query.query, query.page]);
 
   const refetch = () => {
     fetchData();
