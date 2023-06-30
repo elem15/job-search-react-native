@@ -13,7 +13,6 @@ const Popularjobs = () => {
   const router = useRouter();
   const { data, isLoading, error, refetch } = useMyFetch('search', {
     query: 'React developer',
-    num_pages: 1,
   });
   const [selectedJob, setSelectedJob] = useState();
   const handleCardPress = (item) => {

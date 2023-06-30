@@ -6,7 +6,8 @@ import useJsonOneJob from '../../hook/useJsonOneJob';
 import { COLORS, SIZES, icons } from '../../constants';
 import { Company, JobFooter, JobTabs, ScreenHeaderBtn, Specifics } from '../../components';
 import { useEffect, useState } from 'react';
-import Searchbyjobs from '../../components/home/search/Searchbyjobs';
+import JobSearch from '../../components/home/search/JobSearch';
+import React from 'react';
 
 
 const SearchResults = () => {
@@ -41,18 +42,9 @@ const SearchResults = () => {
         }}
       >
       </Stack.Screen>
-      <>
-        <ScrollView
-          showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        >
-          <View style={{
-            flex: 1,
-            padding: SIZES.medium
-          }}>
-            <Searchbyjobs searchTerm={params.id} />
-          </View>
-        </ScrollView>
-      </>
+
+      <JobSearch searchTerm={params.id} />
+
     </SafeAreaView>
   );
 };

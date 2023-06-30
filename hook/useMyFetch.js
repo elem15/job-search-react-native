@@ -10,7 +10,6 @@ const useMyFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(data);
 
   const options = {
     method: 'GET',

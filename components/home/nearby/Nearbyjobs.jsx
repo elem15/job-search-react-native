@@ -13,7 +13,6 @@ const Nearbyjobs = () => {
   const router = useRouter();
   const { data, isLoading, error } = useMyFetch("search", {
     query: "React Native developer",
-    num_pages: "1",
   });
 
   return (

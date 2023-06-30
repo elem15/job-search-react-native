@@ -13,7 +13,6 @@ const Searchbyjobs = ({ searchTerm }) => {
   const router = useRouter();
   const { data, isLoading, error, refetch } = useMyFetch("search", {
     query: searchTerm,
-    num_pages: "1",
   });
   useEffect(() => {
     searchTerm && refetch();
