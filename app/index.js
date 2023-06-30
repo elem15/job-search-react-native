@@ -32,8 +32,7 @@ const Home = () => {
             padding: SIZES.medium
           }}
         >
-          <Welcome setSearchTerm={setSearchTerm} />
-          <Searchbyjobs searchTerm={searchTerm} />
+          <Welcome searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleClick={() => router.push(`search/${searchTerm}`)} />
           <Popularjobs />
           <Nearbyjobs />
         </View>
