@@ -6,24 +6,25 @@ import {
   Image,
   FlatList
 } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './welcome.style';
 import { icons, SIZES } from '../../../constants';
 import { useRouter } from 'expo-router';
 
 const jobTypes = ["Full-time", "Part-time", "Contractor"];
 
-const Welcome = () => {
+const Welcome = ({ setSearchTerm }) => {
   const router = useRouter();
+  const [searchValue, setSearchValue] = useState('');
   const [activeJobType, setActiveJobType] = useState("Full-time");
   return (
     <View>
       <View style={styles.container}>
         <Text style={styles.userName}>
-          Hello, Elem
+          Hello,
         </Text>
         <Text style={styles.welcomeMessage}>
-          Find you perfect job
+          find you perfect job
         </Text>
       </View>
 
@@ -31,12 +32,12 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value=''
-            onChange={() => { }}
+            value={searchValue}
+            onChangeText={(text) => { setSearchValue(text); }}
             placeholder='What are you looking for'
           />
         </View>
-        <TouchableOpacity style={styles.searchBtn} onPress={() => { }}>
+        <TouchableOpacity style={styles.searchBtn} onPress={() => { setSearchTerm(searchValue); }}>
           <Image
             source={icons.search}
             resizeMode='contain'

@@ -5,7 +5,7 @@ import useMyFetch from '../../hook/useMyFetch';
 import useJsonOneJob from '../../hook/useJsonOneJob';
 import { COLORS, SIZES, icons } from '../../constants';
 import { Company, JobFooter, JobTabs, ScreenHeaderBtn, Specifics } from '../../components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
@@ -14,7 +14,11 @@ const JobDetails = () => {
   const router = useRouter();
   const { data, isLoading, error, refetch } = useMyFetch('job-details', { job_id: params.id });
   const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState(tabs[1]);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const onRefresh = () => { };
 

@@ -10,6 +10,7 @@ const useMyFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  // console.log(data);
 
   const options = {
     method: 'GET',
@@ -38,11 +39,12 @@ const useMyFetch = (endpoint, query) => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (query.query) {
+      fetchData();
+    }
   }, []);
 
   const refetch = () => {
-    setIsLoading(true);
     fetchData();
   };
   return { data, isLoading, error, refetch };

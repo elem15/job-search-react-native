@@ -23,10 +23,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  likeBtnActive: {
+    width: 55,
+    height: 55,
+    borderWidth: 1,
+    borderColor: "#F37453",
+    borderRadius: SIZES.medium,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F37453"
+  },
   likeBtnImage: {
     width: "40%",
     height: "40%",
     tintColor: "#F37453",
+  },
+  likeBtnImageActive: {
+    width: "40%",
+    height: "40%",
+    tintColor: "#F37453",
+    tintColor: "white"
   },
   applyBtn: {
     flex: 1,
