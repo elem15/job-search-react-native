@@ -24,13 +24,14 @@ const JobSearch = ({ searchTerm }) => {
 
   const fetchData = async (page) => {
     setIsLoading(true);
+    setData([]);
     try {
       const response = await axios.request({
         method: 'GET',
         url: `${url}/search`,
         params: {
-          query: searchTerm,
-          page
+          query: searchTerm.trim(),
+          page: page.toString(),
         },
       });
       if (Array.isArray(response.data)) setData(response.data);
