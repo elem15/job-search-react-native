@@ -10,5 +10,6 @@ npx create-expo-app -e with-router
 
 ## 📝 Notes
 
+- [Run on Device: Docs](https://docs.expo.dev/workflow/run-on-device/)
 - [Expo Router: Docs](https://expo.github.io/router)
 - [Expo Router: Repo](https://github.com/expo/router)
