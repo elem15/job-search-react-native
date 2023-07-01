@@ -1,34 +1,66 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "../../../styles/search";
 import { COLORS, SIZES, icons } from "../../../constants";
 import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
-import useMyFetch from "../../../hooks/useMyFetch";
 import { SafeAreaView } from 'react-native';
 import { FlatList } from 'react-native';
 import { Image } from 'react-native';
 import { RefreshControl } from 'react-native';
+import axios from 'axios';
+
+const url = 'https://job-search-cc3e.onrender.com';
+// const url = 'http://localhost:3000';
 
 const JobSearch = ({ searchTerm }) => {
   const router = useRouter();
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, error, refetch } = useMyFetch('search', { query: searchTerm, page: page });
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const fetchData = async (page) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.request({
+        method: 'GET',
+        url: `${url}/search`,
+        params: {
+          query: searchTerm,
+          page
+        },
+      });
+      if (Array.isArray(response.data)) setData(response.data);
+      else setData([response.data]);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error);
+      alert('There is an error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const handlePagination = (direction) => {
     if (direction === 'left' && page > 1) {
+      fetchData(page - 1);
       setPage((page) => (page - 1));
     } else if (direction === 'right' && data.length > 4) {
+      fetchData(page + 1);
       setPage((page) => (page + 1));
     }
   };
 
+  useEffect(() => {
+    if (searchTerm) fetchData(1);
+  }, [searchTerm]);
+
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    refetch();
+    fetchData(page);
     setRefreshing(false);
   }, []);
 
