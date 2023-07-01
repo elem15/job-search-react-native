@@ -9,6 +9,8 @@ cd job-search-react-native
 npm i
 npm run expo
 ```
+or go to https://expo.dev/@elem15/my-app
+
 Install "Expo Go" on Android or IPhone.
 
 Scan QR code.
