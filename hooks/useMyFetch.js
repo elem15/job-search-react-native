@@ -10,7 +10,7 @@ const useMyFetch = (endpoint, query) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(data);
   const options = {
     method: 'GET',
     url: `${url}/${endpoint}`,
@@ -41,7 +41,7 @@ const useMyFetch = (endpoint, query) => {
     if (query.query || query.page || query.job_id) {
       fetchData();
     }
-  }, [query.query, query.page, query.job_id]);
+  }, [query.page]);
 
   const refetch = () => {
     fetchData();
