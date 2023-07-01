@@ -8,6 +8,9 @@
     "slug": "my-app",
     "android": {
       "package": "com.anonymous.myapp"
-    }  
+    },
+    "updates": {
+      "url": "https://exp.host/@elem15/my-app"
+    }
   }
 }

@@ -1,6 +1,5 @@
 import { Stack, useRouter, useSearchParams } from 'expo-router';
 import { ActivityIndicator, RefreshControl, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import useFetch from '../../hooks/useFetch';
 import useMyFetch from '../../hooks/useMyFetch';
 import useJsonOneJob from '../../hooks/useJsonOneJob';
 import { COLORS, SIZES, icons } from '../../constants';
